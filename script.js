@@ -2,6 +2,13 @@ const API_KEY = "bf7b52a8-b4de-40bf-bf89-0b4fc699306c";
 
 const map = L.map("map").setView([39.5, -98.35], 4);
 
+const starPlayers = {
+  LAL: "lebron.png",
+  GSW: "curry.png",
+  BOS: "tatum.png",
+  DEN: "jokic.png"
+};
+
 L.tileLayer(
 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
 {
