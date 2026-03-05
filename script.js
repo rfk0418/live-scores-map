@@ -11,9 +11,10 @@ const starPlayers = {
   "Los Angeles Lakers": "lebron.png",
   "Denver Nuggets": "jokic.png"
 };
-
+//https://cartocdn_{s}.global.ssl.fastly.net/base-midnight/{z}/{x}/{y}.png
+//https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png
 L.tileLayer(
-'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
+'https://cartocdn_{s}.global.ssl.fastly.net/base-midnight/{z}/{x}/{y}.png',
 {
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
   subdomains: 'abcd',
