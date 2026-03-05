@@ -2,6 +2,11 @@ const API_KEY = "bf7b52a8-b4de-40bf-bf89-0b4fc699306c";
 
 const map = L.map("map").setView([39.5, -98.35], 4);
 
+const initialView = {
+  center: [39.5, -98.35],
+  zoom: 4
+};
+
 const starPlayers = {
   "Los Angeles Lakers": "lebron.png",
   "Denver Nuggets": "jokic.png"
@@ -14,6 +19,30 @@ L.tileLayer(
   subdomains: 'abcd',
   maxZoom: 19
 }).addTo(map);
+
+//Add reset button (outside of displayGames)
+const resetControl = L.control({position: 'topright'});
+resetControl.onAdd = function(map) {
+  const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+  div.innerHTML = '<a href="#" title="Reset Map">⤺</a>';
+  div.style.textAlign = "center";
+  div.style.fontSize = "18px";
+  div.style.lineHeight = "26px";
+  div.style.width = "26px";
+  div.style.height = "26px";
+  div.style.cursor = "pointer";
+  div.style.backgroundColor = "white";
+  div.style.color = "black";
+  div.style.borderRadius = "4px";
+
+  div.onclick = () => {
+    map.setView(initialView.center, initialView.zoom);
+    playerLayer.clearLayers(); // hide player markers when zoomed out
+  };
+
+  return div;
+};
+resetControl.addTo(map);
 
 function playerIcon(image) {
   return L.icon({
