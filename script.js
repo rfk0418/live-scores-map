@@ -76,7 +76,7 @@ function displayGames(games) {
 
     //When arena is clicked, zoom in and show players
     arenaMarker.on("click", () => {
-      map.setView(location, 8); // zoom in on city
+      map.setView(location, 11); // zoom in on city
       showPlayersForGame(game, location, offset, popup);
     });
 
