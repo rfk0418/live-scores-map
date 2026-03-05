@@ -53,47 +53,47 @@ function displayGames(games) {
 
     const offset = 0.2;
 
-const homeStar = starPlayers[homeTeam];
-const visitorStar = starPlayers[visitorTeam];
+    const homeStar = starPlayers[homeTeam];
+    const visitorStar = starPlayers[visitorTeam];
 
-// visitor player (left side)
-if (visitorStar) {
-  L.marker(
-    [location[0], location[1] - offset],
-    { icon: playerIcon(visitorStar) }
-  ).addTo(map);
-}
+    // visitor player (left side)
+    if (visitorStar) {
+      L.marker(
+        [location[0], location[1] - offset],
+        { icon: playerIcon(visitorStar) }
+      ).addTo(map);
+    }
 
-// home player (right side)
-if (homeStar) {
-  L.marker(
-    [location[0], location[1] + offset],
-    { icon: playerIcon(homeStar) }
-  ).addTo(map);
-}
+    // home player (right side)
+    if (homeStar) {
+      L.marker(
+        [location[0], location[1] + offset],
+        { icon: playerIcon(homeStar) }
+      ).addTo(map);
+    }
 
 
-const popup = `
-  <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
-  <b>${homeTeam}</b> ${game.home_team_score}<br><br>
-  Status: ${game.status}
-`;
+    const popup = `
+      <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
+      <b>${homeTeam}</b> ${game.home_team_score}<br><br>
+      Status: ${game.status}
+    `;
 
-if (visitorStar) {
-  L.marker([location[0], location[1] - offset],
-    { icon: playerIcon(visitorStar) })
-    .addTo(map)
-    .bindPopup(popup);
-}
+    if (visitorStar) {
+      L.marker([location[0], location[1] - offset],
+        { icon: playerIcon(visitorStar) })
+        .addTo(map)
+        .bindPopup(popup);
+    }
 
-if (homeStar) {
-  L.marker([location[0], location[1] + offset],
-    { icon: playerIcon(homeStar) })
-    .addTo(map)
-    .bindPopup(popup);
-}
-  });
-}
+    if (homeStar) {
+      L.marker([location[0], location[1] + offset],
+        { icon: playerIcon(homeStar) })
+        .addTo(map)
+        .bindPopup(popup);
+    }
+      });
+    }
 
 getGames();
 
