@@ -57,7 +57,25 @@ function displayGames(games) {
 
     if (!location) return;
 
-    const marker = L.marker(location).addTo(map);
+    //const marker = L.marker(location).addTo(map);
+
+    const homeStar = starPlayers[game.home_team.abbreviation];
+    const awayStar = starPlayers[game.visitor_team.abbreviation];
+    
+    const homeIcon = playerIcon(homeStar);
+    const awayIcon = playerIcon(awayStar);
+    
+    // home player
+    L.marker(
+      [teamLocations.lat + 0.15, teamLocations.lng + 0.15],
+      {icon: homeIcon}
+    ).addTo(map);
+    
+    // away player
+    L.marker(
+      [teamLocations.lat - 0.15, teamLocations.lng - 0.15],
+      {icon: awayIcon}
+    ).addTo(map);
 
     marker.bindPopup(`
       <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
