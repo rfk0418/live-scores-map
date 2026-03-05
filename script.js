@@ -66,7 +66,7 @@ function displayGames(games) {
       </div>
     `;
 
-    // 1️⃣ Arena marker in the center
+    //Arena marker in the center
     const arenaMarker = L.circleMarker(location, {
       radius: 6,
       color: "white",
@@ -74,7 +74,7 @@ function displayGames(games) {
       fillOpacity: 1
     }).addTo(map).bindPopup(popup);
 
-    // 2️⃣ When arena is clicked, zoom in and show players
+    //When arena is clicked, zoom in and show players
     arenaMarker.on("click", () => {
       map.setView(location, 8); // zoom in on city
       showPlayersForGame(game, location, offset, popup);
