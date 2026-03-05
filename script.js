@@ -69,7 +69,7 @@ function displayGames(games) {
     //Arena marker in the center
     const arenaMarker = L.circleMarker(location, {
       radius: 6,
-      color: "white",
+      color: "purple",
       fillColor: "#ffffff",
       fillOpacity: 1
     }).addTo(map).bindPopup(popup);
