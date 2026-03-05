@@ -48,7 +48,6 @@ function displayGames(games) {
     const visitorTeam = game.visitor_team.full_name;
 
     const location = teamLocations[homeTeam];
-
     if (!location) return;
 
     const offset = 0.2;
@@ -56,44 +55,29 @@ function displayGames(games) {
     const homeStar = starPlayers[homeTeam];
     const visitorStar = starPlayers[visitorTeam];
 
-    // visitor player (left side)
-    if (visitorStar) {
-      L.marker(
-        [location[0], location[1] - offset],
-        { icon: playerIcon(visitorStar) }
-      ).addTo(map);
-    }
-
-    // home player (right side)
-    if (homeStar) {
-      L.marker(
-        [location[0], location[1] + offset],
-        { icon: playerIcon(homeStar) }
-      ).addTo(map);
-    }
-
-
     const popup = `
       <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
       <b>${homeTeam}</b> ${game.home_team_score}<br><br>
       Status: ${game.status}
     `;
 
+    // visitor player (left)
     if (visitorStar) {
-      L.marker([location[0], location[1] - offset],
-        { icon: playerIcon(visitorStar) })
+      L.marker([location[0], location[1] - offset], { icon: playerIcon(visitorStar) })
         .addTo(map)
         .bindPopup(popup);
     }
 
+    // home player (right)
     if (homeStar) {
-      L.marker([location[0], location[1] + offset],
-        { icon: playerIcon(homeStar) })
+      L.marker([location[0], location[1] + offset], { icon: playerIcon(homeStar) })
         .addTo(map)
         .bindPopup(popup);
     }
-      });
-    }
+
+  });
+
+}
 
 getGames();
 
