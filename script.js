@@ -18,7 +18,7 @@ L.tileLayer(
 function playerIcon(image) {
   return L.icon({
     iconUrl: `players/${image}`,
-    iconSize: [50,50],
+    iconSize: [100,100],
     iconAnchor: [25,25],
     popupAnchor: [0,-25]
   });
@@ -40,7 +40,7 @@ async function getGames() {
   displayGames(data.data);
 }
 
-const PLAYER_ZOOM_THRESHOLD = 6; // zoom level at which player icons appear
+const PLAYER_ZOOM_THRESHOLD = 8; // zoom level at which player icons appear
 const playerLayer = L.layerGroup().addTo(map); // layer for all player markers
 
 function displayGames(games) {
