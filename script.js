@@ -50,7 +50,7 @@ function displayGames(games) {
     const location = teamLocations[homeTeam];
     if (!location) return;
 
-    const offset = 0.2;
+    const offset = 2.2;
 
     const homeStar = starPlayers[homeTeam];
     const visitorStar = starPlayers[visitorTeam];
