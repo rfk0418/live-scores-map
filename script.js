@@ -20,7 +20,7 @@ L.tileLayer(
   maxZoom: 19
 }).addTo(map);
 
-//Add reset button (outside of displayGames)
+//Add reset button
 const resetControl = L.control({position: 'topright'});
 resetControl.onAdd = function(map) {
   const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
