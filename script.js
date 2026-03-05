@@ -9,6 +9,8 @@ const starPlayers = {
   DEN: "jokic.png"
 };
 
+const offset = 0.15; // degrees
+
 L.tileLayer(
 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
 {
@@ -16,6 +18,17 @@ L.tileLayer(
   subdomains: 'abcd',
   maxZoom: 19
 }).addTo(map);
+
+function playerIcon(playerImage) {
+
+  return L.icon({
+    iconUrl: `players/${playerImage}`,
+    iconSize: [48,48],
+    iconAnchor: [24,24],
+    popupAnchor: [0,-20]
+  });
+
+}
 
 async function getGames() {
 
