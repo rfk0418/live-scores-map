@@ -18,7 +18,7 @@ L.tileLayer(
 function playerIcon(image) {
   return L.icon({
     iconUrl: `players/${image}`,
-    iconSize: [100,100],
+    iconSize: [150,150],
     iconAnchor: [25,25],
     popupAnchor: [0,-25]
   });
