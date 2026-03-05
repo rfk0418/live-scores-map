@@ -3,10 +3,8 @@ const API_KEY = "bf7b52a8-b4de-40bf-bf89-0b4fc699306c";
 const map = L.map("map").setView([39.5, -98.35], 4);
 
 const starPlayers = {
-  LAL: "lebron.png",
-  GSW: "curry.png",
-  BOS: "tatum.png",
-  DEN: "jokic.png"
+  "Los Angeles Lakers": "lebron.png",
+  "Denver Nuggets": "jokic.png"
 };
 
 const offset = 0.15; // degrees
@@ -19,15 +17,13 @@ L.tileLayer(
   maxZoom: 19
 }).addTo(map);
 
-function playerIcon(playerImage) {
-
+function playerIcon(image) {
   return L.icon({
-    iconUrl: `players/${playerImage}`,
-    iconSize: [48,48],
-    iconAnchor: [24,24],
-    popupAnchor: [0,-20]
+    iconUrl: `players/${image}`,
+    iconSize: [50,50],
+    iconAnchor: [25,25],
+    popupAnchor: [0,-25]
   });
-
 }
 
 async function getGames() {
@@ -55,15 +51,17 @@ function displayGames(games) {
 
     const location = teamLocations[homeTeam];
 
-    if (!location) return;
-
-    //const marker = L.marker(location).addTo(map);
-
     const homeStar = starPlayers[game.home_team.abbreviation];
     const awayStar = starPlayers[game.visitor_team.abbreviation];
     
     const homeIcon = playerIcon(homeStar);
     const awayIcon = playerIcon(awayStar);
+
+    if (!location) return;
+
+    //const marker = L.marker(location).addTo(map);
+
+
     
     // home player
     L.marker(
