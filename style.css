@@ -8,3 +8,13 @@ body {
   height: 90vh;
   width: 100%;
 }
+
+.leaflet-marker-icon {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.game-popup {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: white;
+}
