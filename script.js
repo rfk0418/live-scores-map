@@ -7,8 +7,6 @@ const starPlayers = {
   "Denver Nuggets": "jokic.png"
 };
 
-const offset = 0.15; // degrees
-
 L.tileLayer(
 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
 {
@@ -51,35 +49,49 @@ function displayGames(games) {
 
     const location = teamLocations[homeTeam];
 
-    const homeStar = starPlayers[game.home_team.abbreviation];
-    const awayStar = starPlayers[game.visitor_team.abbreviation];
-    
-    const homeIcon = playerIcon(homeStar);
-    const awayIcon = playerIcon(awayStar);
-
     if (!location) return;
 
-    //const marker = L.marker(location).addTo(map);
+    const offset = 0.2;
+
+const homeStar = starPlayers[homeTeam];
+const visitorStar = starPlayers[visitorTeam];
+
+// visitor player (left side)
+if (visitorStar) {
+  L.marker(
+    [location[0], location[1] - offset],
+    { icon: playerIcon(visitorStar) }
+  ).addTo(map);
+}
+
+// home player (right side)
+if (homeStar) {
+  L.marker(
+    [location[0], location[1] + offset],
+    { icon: playerIcon(homeStar) }
+  ).addTo(map);
+}
 
 
-    
-    // home player
-    L.marker(
-      [teamLocations.lat + 0.15, teamLocations.lng + 0.15],
-      {icon: homeIcon}
-    ).addTo(map);
-    
-    // away player
-    L.marker(
-      [teamLocations.lat - 0.15, teamLocations.lng - 0.15],
-      {icon: awayIcon}
-    ).addTo(map);
+const popup = `
+  <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
+  <b>${homeTeam}</b> ${game.home_team_score}<br><br>
+  Status: ${game.status}
+`;
 
-    marker.bindPopup(`
-      <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
-      <b>${homeTeam}</b> ${game.home_team_score}<br><br>
-      Status: ${game.status}
-    `);
+if (visitorStar) {
+  L.marker([location[0], location[1] - offset],
+    { icon: playerIcon(visitorStar) })
+    .addTo(map)
+    .bindPopup(popup);
+}
+
+if (homeStar) {
+  L.marker([location[0], location[1] + offset],
+    { icon: playerIcon(homeStar) })
+    .addTo(map)
+    .bindPopup(popup);
+}
   });
 }
 
