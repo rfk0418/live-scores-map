@@ -41,44 +41,57 @@ async function getGames() {
 }
 
 function displayGames(games) {
-
   games.forEach(game => {
-
     const homeTeam = game.home_team.full_name;
     const visitorTeam = game.visitor_team.full_name;
 
+    // Arena location (must exist in your teamLocations object)
     const location = teamLocations[homeTeam];
     if (!location) return;
 
-    const offset = 2.2;
+    const offset = 0.2; // degrees to offset player markers
 
+    // Get star player images for home/away
     const homeStar = starPlayers[homeTeam];
     const visitorStar = starPlayers[visitorTeam];
 
+    // Create a single popup for the whole game
     const popup = `
-      <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
-      <b>${homeTeam}</b> ${game.home_team_score}<br><br>
-      Status: ${game.status}
+      <div class="game-popup">
+        <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
+        <b>${homeTeam}</b> ${game.home_team_score}<br><br>
+        Status: ${game.status}
+      </div>
     `;
 
-    // visitor player (left)
+    // Add arena marker in the center
+    L.circleMarker(location, {
+      radius: 6,
+      color: "white",
+      fillColor: "#ffffff",
+      fillOpacity: 1
+    }).addTo(map).bindPopup(popup);
+
+    // Add visitor star player (left)
     if (visitorStar) {
-      L.marker([location[0], location[1] - offset], { icon: playerIcon(visitorStar) })
-        .addTo(map)
-        .bindPopup(popup);
+      L.marker(
+        [location[0], location[1] - offset],
+        { icon: playerIcon(visitorStar) }
+      ).addTo(map)
+       .bindPopup(popup);
     }
 
-    // home player (right)
+    // Add home star player (right)
     if (homeStar) {
-      L.marker([location[0], location[1] + offset], { icon: playerIcon(homeStar) })
-        .addTo(map)
-        .bindPopup(popup);
+      L.marker(
+        [location[0], location[1] + offset],
+        { icon: playerIcon(homeStar) }
+      ).addTo(map)
+       .bindPopup(popup);
     }
 
   });
-
 }
-
 getGames();
 
 setInterval(() => {
