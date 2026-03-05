@@ -40,7 +40,7 @@ async function getGames() {
   displayGames(data.data);
 }
 
-const PLAYER_ZOOM_THRESHOLD = 8; // zoom level at which player icons appear
+const PLAYER_ZOOM_THRESHOLD = 10; // zoom level at which player icons appear
 const playerLayer = L.layerGroup().addTo(map); // layer for all player markers
 
 function displayGames(games) {
