@@ -40,22 +40,24 @@ async function getGames() {
   displayGames(data.data);
 }
 
+const PLAYER_ZOOM_THRESHOLD = 6; // zoom level at which player icons appear
+const playerLayer = L.layerGroup().addTo(map); // layer for all player markers
+
 function displayGames(games) {
+
   games.forEach(game => {
+
     const homeTeam = game.home_team.full_name;
     const visitorTeam = game.visitor_team.full_name;
 
-    // Arena location (must exist in your teamLocations object)
     const location = teamLocations[homeTeam];
     if (!location) return;
 
-    const offset = 0.2; // degrees to offset player markers
-
-    // Get star player images for home/away
+    const offset = 0.2; // horizontal offset for player markers
     const homeStar = starPlayers[homeTeam];
     const visitorStar = starPlayers[visitorTeam];
 
-    // Create a single popup for the whole game
+    // Popup content for the game
     const popup = `
       <div class="game-popup">
         <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
@@ -64,34 +66,55 @@ function displayGames(games) {
       </div>
     `;
 
-    // Add arena marker in the center
-    L.circleMarker(location, {
+    // 1️⃣ Arena marker in the center
+    const arenaMarker = L.circleMarker(location, {
       radius: 6,
       color: "white",
       fillColor: "#ffffff",
       fillOpacity: 1
     }).addTo(map).bindPopup(popup);
 
-    // Add visitor star player (left)
-    if (visitorStar) {
-      L.marker(
-        [location[0], location[1] - offset],
-        { icon: playerIcon(visitorStar) }
-      ).addTo(map)
-       .bindPopup(popup);
-    }
-
-    // Add home star player (right)
-    if (homeStar) {
-      L.marker(
-        [location[0], location[1] + offset],
-        { icon: playerIcon(homeStar) }
-      ).addTo(map)
-       .bindPopup(popup);
-    }
+    // 2️⃣ When arena is clicked, zoom in and show players
+    arenaMarker.on("click", () => {
+      map.setView(location, 8); // zoom in on city
+      showPlayersForGame(game, location, offset, popup);
+    });
 
   });
 }
+
+// Function to create and show player markers for a specific game
+function showPlayersForGame(game, location, offset, popup) {
+  playerLayer.clearLayers(); // remove any previous player markers
+
+  const homeStar = starPlayers[game.home_team.full_name];
+  const visitorStar = starPlayers[game.visitor_team.full_name];
+
+  if (visitorStar) {
+    const visitorMarker = L.marker(
+      [location[0], location[1] - offset],
+      { icon: playerIcon(visitorStar) }
+    ).bindPopup(popup);
+    playerLayer.addLayer(visitorMarker);
+  }
+
+  if (homeStar) {
+    const homeMarker = L.marker(
+      [location[0], location[1] + offset],
+      { icon: playerIcon(homeStar) }
+    ).bindPopup(popup);
+    playerLayer.addLayer(homeMarker);
+  }
+}
+
+//auto-hide player markers when zoomed out
+map.on("zoomend", () => {
+  if (map.getZoom() < PLAYER_ZOOM_THRESHOLD) {
+    map.removeLayer(playerLayer);
+  } else {
+    map.addLayer(playerLayer);
+  }
+});
 getGames();
 
 setInterval(() => {
