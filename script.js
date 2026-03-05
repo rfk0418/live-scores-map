@@ -8,7 +8,7 @@ const starPlayers = {
 };
 
 L.tileLayer(
-'https://tiles.wmflabs.org/bw-dark/{z}/{x}/{y}.png',
+'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
 {
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
   subdomains: 'abcd',
