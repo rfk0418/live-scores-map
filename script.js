@@ -14,7 +14,7 @@ const starPlayers = {
 //https://cartocdn_{s}.global.ssl.fastly.net/base-midnight/{z}/{x}/{y}.png
 //https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png
 L.tileLayer(
-'https://cartocdn_{s}.global.ssl.fastly.net/base-midnight/{z}/{x}/{y}.png',
+'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
 {
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
   subdomains: 'abcd',
