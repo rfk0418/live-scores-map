@@ -6,6 +6,7 @@ const teamLocations = {
   "Brooklyn Nets": [40.6782, -73.9442],
   "Chicago Bulls": [41.8781, -87.6298],
   "Dallas Mavericks": [32.7767, -96.7970],
+  "Los Angeles Clippers": [34.0549, -118.2426],
   "Denver Nuggets": [39.7392, -104.9903],
   "Golden State Warriors": [37.7749, -122.4194],
   "Houston Rockets": [29.7604, -95.3698],
