@@ -139,16 +139,16 @@ function displayGames(games) {
     `;
 
     //Arena marker in the center
-    const arenaMarker = L.circleMarker(location, {
-      radius: 6,
-      color: "purple",
-      fillColor: "#ffffff",
-      fillOpacity: 1
-    }).addTo(map).bindPopup(popup);
+    const logo = teamLogos[homeTeam];
 
-    //When arena is clicked, zoom in and show players
+    const arenaMarker = L.marker(location, {
+      icon: teamLogoIcon(logo)
+    })
+    .addTo(arenaLayer)
+    .bindPopup(popup);
+    
     arenaMarker.on("click", () => {
-      map.setView(location, 11); // zoom in on city
+      map.setView(location, 11);
       showPlayersForGame(game, location, offset, popup);
     });
 
