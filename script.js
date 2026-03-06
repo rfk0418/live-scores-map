@@ -87,12 +87,13 @@ function playerIcon(image) {
   });
 }
 
-function teamLogoIcon(image) {
+function teamLogoIcon(image, isLive = false) {
   return L.icon({
     iconUrl: `logos/${image}`,
-    iconSize: [40,40],
-    iconAnchor: [20,20],
-    popupAnchor: [0,-20]
+    iconSize: [40, 40],
+    iconAnchor: [20, 20],
+    popupAnchor: [0, -20],
+    className: isLive ? "live-glow" : ""
   });
 }
 
