@@ -88,12 +88,13 @@ function playerIcon(image) {
 }
 
 function teamLogoIcon(image, isLive = false) {
-  return L.icon({
-    iconUrl: `logos/${image}`,
+  const className = isLive ? "live-glow" : "";
+  return L.divIcon({
+    html: `<img src="logos/${image}" class="${className}" style="width:40px; height:40px;" />`,
+    className: '', // leave empty to remove default marker styling
     iconSize: [40, 40],
     iconAnchor: [20, 20],
-    popupAnchor: [0, -20],
-    className: isLive ? "live-glow" : ""
+    popupAnchor: [0, -20]
   });
 }
 
