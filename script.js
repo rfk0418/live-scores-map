@@ -141,6 +141,13 @@ function displayGames(games) {
 
     //Arena marker in the center
     const logo = teamLogos[homeTeam];
+    if (!logo) return;
+
+const arenaMarker = L.marker(location, {
+  icon: teamLogoIcon(logo)
+})
+.addTo(arenaLayer)
+.bindPopup(popup);
 
     const arenaMarker = L.marker(location, {
       icon: teamLogoIcon(logo)
