@@ -7,6 +7,39 @@ const initialView = {
   zoom: 4
 };
 
+const teamLogos = {
+"Atlanta Hawks":"hawks.png",
+"Boston Celtics":"celtics.png",
+"Brooklyn Nets":"nets.png",
+"Charlotte Hornets":"hornets.png",
+"Chicago Bulls":"bulls.png",
+"Cleveland Cavaliers":"cavaliers.png",
+"Dallas Mavericks":"mavs.png",
+"Denver Nuggets":"nuggets.png",
+"Detroit Pistons":"pistons.png",
+"Golden State Warriors":"warriors.png",
+"Houston Rockets":"rockets.png",
+"Indiana Pacers":"pacers.png",
+"Los Angeles Clippers":"clippers.png",
+"Los Angeles Lakers":"lakers.png",
+"Memphis Grizzlies":"grizzlies.png",
+"Miami Heat":"heat.png",
+"Milwaukee Bucks":"bucks.png",
+"Minnesota Timberwolves":"timberwolves.png",
+"New Orleans Pelicans":"pelicans.png",
+"New York Knicks":"knicks.png",
+"Oklahoma City Thunder":"thunder.png",
+"Orlando Magic":"magic.png",
+"Philadelphia 76ers":"sixers.png",
+"Phoenix Suns":"suns.png",
+"Portland Trail Blazers":"blazers.png",
+"Sacramento Kings":"kings.png",
+"San Antonio Spurs":"spurs.png",
+"Toronto Raptors":"raptors.png",
+"Utah Jazz":"jazz.png",
+"Washington Wizards":"wizards.png"
+};
+
 const starPlayers = {
   "Los Angeles Lakers": "lebron.png",
   "Denver Nuggets": "jokic.png"
