@@ -35,6 +35,11 @@ body {
   filter: drop-shadow(0px 0px 4px white);
 }
 
+.transparent-divicon {
+  background: none !important;
+  border: none !important;
+}
+
 @keyframes pulse {
   0% { filter: drop-shadow(0 0 5px lime) drop-shadow(0 0 10px lime); }
   50% { filter: drop-shadow(0 0 15px lime) drop-shadow(0 0 25px lime); }
@@ -44,4 +49,3 @@ body {
 .live-glow {
   animation: pulse 1.5s infinite;
 }
-
