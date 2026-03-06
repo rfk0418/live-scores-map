@@ -90,8 +90,8 @@ function playerIcon(image) {
 function teamLogoIcon(image, isLive = false) {
   const className = isLive ? "live-glow" : "";
   return L.divIcon({
-    html: `<img src="logos/${image}" class="${className}" style="width:40px; height:40px;" />`,
-    className: '', // leave empty to remove default marker styling
+    html: `<img src="logos/${image}" class="${className}" style="width:40px; height:40px; border-radius:50%;" />`,
+    className: 'transparent-divicon', // no white background
     iconSize: [40, 40],
     iconAnchor: [20, 20],
     popupAnchor: [0, -20]
