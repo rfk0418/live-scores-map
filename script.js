@@ -81,8 +81,8 @@ resetControl.addTo(map);
 function playerIcon(image) {
   return L.icon({
     iconUrl: `players/${image}`,
-    iconSize: [500,500],
-    iconAnchor: [25,25],
+    iconSize: [100,100],
+    iconAnchor: [50,50],
     popupAnchor: [0,-25]
   });
 }
