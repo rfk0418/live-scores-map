@@ -87,6 +87,15 @@ function playerIcon(image) {
   });
 }
 
+function teamLogoIcon(image) {
+  return L.icon({
+    iconUrl: `logos/${image}`,
+    iconSize: [40,40],
+    iconAnchor: [20,20],
+    popupAnchor: [0,-20]
+  });
+}
+
 async function getGames() {
 
   const today = new Date().toLocaleDateString("en-CA");
