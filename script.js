@@ -88,10 +88,10 @@ function playerIcon(image) {
 }
 
 function teamLogoIcon(image, isLive = false) {
-  const className = isLive ? "live-glow" : "";
+  // Use divIcon with an <img> so we can apply a CSS class to the image
   return L.divIcon({
-    html: `<img src="logos/${image}" class="${className}" style="width:40px; height:40px; border-radius:50%;" />`,
-    className: 'transparent-divicon', // no white background
+    html: `<img src="logos/${image}" class="team-logo ${isLive ? 'live-glow' : ''}" />`,
+    className: 'transparent-divicon', // no background on the div
     iconSize: [40, 40],
     iconAnchor: [20, 20],
     popupAnchor: [0, -20]
