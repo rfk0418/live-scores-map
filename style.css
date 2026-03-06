@@ -40,12 +40,26 @@ body {
   border: none !important;
 }
 
-@keyframes pulse {
-  0% { filter: drop-shadow(0 0 5px lime) drop-shadow(0 0 10px lime); }
-  50% { filter: drop-shadow(0 0 15px lime) drop-shadow(0 0 25px lime); }
-  100% { filter: drop-shadow(0 0 5px lime) drop-shadow(0 0 10px lime); }
+.team-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: block;
+}
+
+/* Pulse glow animation */
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 2px lime) drop-shadow(0 0 4px lime);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px lime) drop-shadow(0 0 20px lime);
+  }
+  100% {
+    filter: drop-shadow(0 0 2px lime) drop-shadow(0 0 4px lime);
+  }
 }
 
 .live-glow {
-  animation: pulse 1.5s infinite;
+  animation: glowPulse 1.5s infinite;
 }
