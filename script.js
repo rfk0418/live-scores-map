@@ -13,7 +13,7 @@ const teamLogos = {
 "Brooklyn Nets":"nets.png",
 "Charlotte Hornets":"hornets.png",
 "Chicago Bulls":"bulls.png",
-"Cleveland Cavaliers":"cavaliers.png",
+"Cleveland Cavaliers":"cavs.png",
 "Dallas Mavericks":"mavs.png",
 "Denver Nuggets":"nuggets.png",
 "Detroit Pistons":"pistons.png",
