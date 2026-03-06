@@ -118,43 +118,42 @@ const playerLayer = L.layerGroup().addTo(map); // layer for all player markers
 const arenaLayer = L.layerGroup().addTo(map);
 
 function displayGames(games) {
-
   games.forEach(game => {
-
     const homeTeam = game.home_team.full_name;
-    const visitorTeam = game.visitor_team.full_name;
-
     const location = teamLocations[homeTeam];
     if (!location) return;
 
-    const offset = 0.2; // horizontal offset for player markers
-    const homeStar = starPlayers[homeTeam];
-    const visitorStar = starPlayers[visitorTeam];
+    const offset = 0.2;
+    const isLive = game.status === "Live"; // detect live game
+    const logo = teamLogos[homeTeam];
 
-    // Popup content for the game
+    // Optional: add halo circle behind logo for live game
+    if (isLive) {
+      L.circleMarker(location, {
+        radius: 15,
+        color: "lime",
+        fillColor: "lime",
+        fillOpacity: 0.2,
+        weight: 2
+      }).addTo(arenaLayer);
+    }
+
     const popup = `
       <div class="game-popup">
-        <b>${visitorTeam}</b> ${game.visitor_team_score}<br>
+        <b>${game.visitor_team.full_name}</b> ${game.visitor_team_score}<br>
         <b>${homeTeam}</b> ${game.home_team_score}<br><br>
         Status: ${game.status}
       </div>
     `;
 
-    //Arena marker in the center
-    const logo = teamLogos[homeTeam];
-    if (!logo) return;
-
     const arenaMarker = L.marker(location, {
-      icon: teamLogoIcon(logo)
-    })
-    .addTo(arenaLayer)
-    .bindPopup(popup);
-    
+      icon: teamLogoIcon(logo, isLive)
+    }).addTo(arenaLayer).bindPopup(popup);
+
     arenaMarker.on("click", () => {
       map.setView(location, 11);
       showPlayersForGame(game, location, offset, popup);
     });
-
   });
 }
 
