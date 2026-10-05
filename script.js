@@ -1,4 +1,5 @@
 const API_KEY = "bf7b52a8-b4de-40bf-bf89-0b4fc699306c";
+const CARTO_KEY = "cb1_4ayv_1_62b33aa299cbef70f5a3b582";
 
 const map = L.map("map").setView([39.5, -98.35], 4);
 
@@ -47,12 +48,12 @@ const starPlayers = {
 //https://cartocdn_{s}.global.ssl.fastly.net/base-midnight/{z}/{x}/{y}.png
 //https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png
 L.tileLayer(
-'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
-{
-  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-  subdomains: 'abcd',
-  maxZoom: 19
-}).addTo(map);
+  `https://basemaps.cartocdn.com/rastertiles/dark_nolabels/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`,
+  {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    maxZoom: 20
+  }
+).addTo(map);
 
 //Add reset button
 const resetControl = L.control({position: 'topright'});
