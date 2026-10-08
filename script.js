@@ -104,7 +104,7 @@ async function getGames() {
   const today = new Date().toLocaleDateString("en-CA");
 
   const response = await fetch(
-    `https://api.balldontlie.io/v1/games?dates[]=${today}`,
+  `https://api.balldontlie.io/v1/games?dates[]=${today}&season_type=preseason`,
     {
       headers: { Authorization: API_KEY }
     }
